@@ -9,7 +9,7 @@ export function ErrorMessage({
 }: ErrorMessageProps) {
   return (
     <div
-      className="rounded-xl border border-red-200 bg-red-50 px-4 py-6 text-center"
+      className="rounded-lg border border-red-200 bg-red-50 px-4 py-6 text-center"
       role="alert"
     >
       <p className="font-medium text-red-800">{title}</p>

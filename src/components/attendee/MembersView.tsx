@@ -47,7 +47,7 @@ export function MembersView({ members }: MembersViewProps) {
         placeholder="Search by name or organization…"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full rounded-lg border border-border bg-surface px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[44px]"
+        className="input-field"
         aria-label="Search members"
       />
 
@@ -68,7 +68,7 @@ export function MembersView({ members }: MembersViewProps) {
           description="Try adjusting your search or role filter."
         />
       ) : (
-        <ul className="space-y-3">
+        <ul className="grid grid-cols-1 gap-3 lg:grid-cols-2">
           {filtered.map((member) => (
             <li key={member.id}>
               <Card>
@@ -81,7 +81,7 @@ export function MembersView({ members }: MembersViewProps) {
                       {member.organization_name}
                     </p>
                   </div>
-                  <Badge className="shrink-0 bg-primary/10 text-primary">
+                  <Badge className="shrink-0 bg-primary/10 text-primary ring-1 ring-primary/10">
                     {roleLabels[member.role]}
                   </Badge>
                 </div>
@@ -91,7 +91,7 @@ export function MembersView({ members }: MembersViewProps) {
                   </p>
                 ) : null}
                 {member.bio ? (
-                  <p className="mt-2 text-sm text-foreground/80">
+                  <p className="mt-2 text-sm text-foreground/80 line-clamp-3">
                     {member.bio}
                   </p>
                 ) : null}

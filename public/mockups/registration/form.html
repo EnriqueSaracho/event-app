@@ -7,7 +7,14 @@
     <link rel="stylesheet" href="../mockups.css" />
   </head>
   <body>
-    <div class="container">
+    <nav class="mock-nav" aria-label="Demo navigation">
+      <div class="mock-nav-inner">
+        <span class="mock-nav-brand">ConcreteBC Events</span>
+        <span class="mock-nav-tag">Registration demo</span>
+      </div>
+    </nav>
+
+    <div class="container-wide">
       <header class="mock-header">
         <span class="mock-logo">ConcreteBC</span>
         <h1>Register for the conference</h1>
@@ -26,53 +33,55 @@
 
       <div class="card">
         <form action="confirmation.html" method="get">
-          <div class="form-group">
-            <label for="name">Attendee name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value="Demo Attendee"
-              readonly
-            />
-          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Attendee name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value="Demo Attendee"
+                readonly
+              />
+            </div>
 
-          <div class="form-group">
-            <label for="org">Organization</label>
-            <input
-              type="text"
-              id="org"
-              name="org"
-              value="Sample Org Ltd."
-              readonly
-            />
-          </div>
+            <div class="form-group">
+              <label for="org">Organization</label>
+              <input
+                type="text"
+                id="org"
+                name="org"
+                value="Sample Org Ltd."
+                readonly
+              />
+            </div>
 
-          <div class="form-group">
-            <label for="email">Email (demo)</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value="demo.attendee@example.test"
-              readonly
-            />
-            <p class="hint">Fake address for demo purposes only.</p>
-          </div>
+            <div class="form-group">
+              <label for="email">Email (demo)</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value="demo.attendee@example.test"
+                readonly
+              />
+              <p class="hint">Fake address for demo purposes only.</p>
+            </div>
 
-          <div class="form-group">
-            <label for="ticket">Ticket type</label>
-            <select id="ticket" name="ticket">
-              <option selected>Member — Full conference</option>
-              <option>Member — Single day</option>
-              <option>Guest pass</option>
-            </select>
-          </div>
+            <div class="form-group">
+              <label for="ticket">Ticket type</label>
+              <select id="ticket" name="ticket">
+                <option selected>Member — Full conference</option>
+                <option>Member — Single day</option>
+                <option>Guest pass</option>
+              </select>
+            </div>
 
-          <div class="form-group">
-            <label for="seats">Number of seats</label>
-            <input type="number" id="seats" name="seats" value="2" min="1" />
-            <p class="hint">You can assign names to each seat after checkout.</p>
+            <div class="form-group form-group-full">
+              <label for="seats">Number of seats</label>
+              <input type="number" id="seats" name="seats" value="2" min="1" />
+              <p class="hint">You can assign names to each seat after checkout.</p>
+            </div>
           </div>
 
           <div class="btn-group">

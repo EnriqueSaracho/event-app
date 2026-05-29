@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
 import { useDemoVisitor } from "@/lib/demo-visitor/DemoVisitorProvider";
 import {
   isSessionSaved,
@@ -11,9 +12,13 @@ import {
 
 type SaveSessionButtonProps = {
   sessionId: string;
+  layout?: "inline" | "rail";
 };
 
-export function SaveSessionButton({ sessionId }: SaveSessionButtonProps) {
+export function SaveSessionButton({
+  sessionId,
+  layout = "inline",
+}: SaveSessionButtonProps) {
   const { visitorId, isReady } = useDemoVisitor();
   const [saved, setSaved] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -59,14 +64,29 @@ export function SaveSessionButton({ sessionId }: SaveSessionButtonProps) {
     }
   }
 
-  return (
+  const button = (
     <Button
-      variant={saved ? "secondary" : "primary"}
+      variant={saved ? "secondary" : "accent"}
       onClick={toggleSave}
       disabled={!isReady || !visitorId || loading || !initialized}
       aria-pressed={saved}
+      className={layout === "rail" ? "w-full" : undefined}
     >
-      {loading ? "Saving…" : saved ? "Saved" : "Save session"}
+      {loading ? "Saving…" : saved ? "Saved to schedule" : "Save session"}
     </Button>
   );
+
+  if (layout === "rail") {
+    return (
+      <Card className="space-y-3">
+        <p className="text-sm font-semibold text-foreground">Your schedule</p>
+        <p className="text-sm text-muted">
+          Add this session to your personal agenda and view it on the Saved page.
+        </p>
+        {button}
+      </Card>
+    );
+  }
+
+  return button;
 }

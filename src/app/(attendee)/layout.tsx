@@ -1,17 +1,27 @@
-import { BottomNav } from "@/components/attendee/BottomNav";
+import { AttendeeShell } from "@/components/attendee/AttendeeShell";
 import { DemoVisitorProvider } from "@/lib/demo-visitor/DemoVisitorProvider";
+import { DEMO_EVENT_SLUG } from "@/lib/supabase/constants";
+import { getEventBySlug } from "@/lib/supabase/queries/agenda";
+import { safeQuery } from "@/lib/safe-query";
 
-export default function AttendeeLayout({
+export default async function AttendeeLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const eventResult = await safeQuery(() => getEventBySlug(DEMO_EVENT_SLUG));
+  const event = eventResult.ok ? eventResult.data : null;
+
   return (
     <DemoVisitorProvider>
-      <div className="mx-auto flex min-h-full w-full max-w-lg flex-1 flex-col">
-        <main className="flex-1 px-4 pb-24 pt-6">{children}</main>
-        <BottomNav />
-      </div>
+      <AttendeeShell
+        eventName={event?.name}
+        startsOn={event?.starts_on}
+        endsOn={event?.ends_on}
+        venueName={event?.venue_name ?? undefined}
+      >
+        {children}
+      </AttendeeShell>
     </DemoVisitorProvider>
   );
 }

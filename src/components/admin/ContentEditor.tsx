@@ -34,20 +34,25 @@ export function ContentEditor({ item }: ContentEditorProps) {
     "social",
   ];
 
+  const inputClass =
+    "mt-1 w-full rounded-md border border-border bg-surface px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-[44px]";
+
   return (
     <div className="space-y-6">
       <div>
         <Link
           href="/admin"
-          className="text-sm font-medium text-accent hover:underline"
+          className="text-sm font-medium text-primary hover:underline"
         >
           ← Back to content queue
         </Link>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-8 lg:grid-cols-2">
         <section>
-          <h1 className="text-2xl font-semibold text-primary">Edit content</h1>
+          <h1 className="text-2xl font-semibold text-foreground lg:text-3xl">
+            Edit content
+          </h1>
           <p className="mt-1 text-sm text-muted">Item #{item.id}</p>
 
           <form
@@ -69,7 +74,7 @@ export function ContentEditor({ item }: ContentEditorProps) {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[44px]"
+                className={inputClass}
               />
             </div>
 
@@ -85,7 +90,7 @@ export function ContentEditor({ item }: ContentEditorProps) {
                 value={summary}
                 onChange={(e) => setSummary(e.target.value)}
                 rows={4}
-                className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                className={`${inputClass} min-h-[100px]`}
               />
             </div>
 
@@ -100,7 +105,7 @@ export function ContentEditor({ item }: ContentEditorProps) {
                 id="category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[44px]"
+                className={inputClass}
               >
                 {categories.map((cat) => (
                   <option key={cat} value={cat}>
@@ -123,7 +128,7 @@ export function ContentEditor({ item }: ContentEditorProps) {
                 onChange={(e) =>
                   setStatus(e.target.value as MockContentItem["status"])
                 }
-                className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[44px]"
+                className={inputClass}
               >
                 {(
                   Object.entries(STATUS_LABELS) as [
@@ -139,9 +144,11 @@ export function ContentEditor({ item }: ContentEditorProps) {
             </div>
 
             <div className="flex items-center gap-3">
-              <Button type="submit">Save</Button>
+              <Button type="submit" variant="accent">
+                Save
+              </Button>
               {savedMessage ? (
-                <p className="text-sm text-accent" role="status">
+                <p className="text-sm text-success" role="status">
                   {savedMessage}
                 </p>
               ) : null}
@@ -149,24 +156,27 @@ export function ContentEditor({ item }: ContentEditorProps) {
           </form>
         </section>
 
-        <section>
-          <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-muted">
-            Preview
-          </h2>
-          <Card>
-            <Badge className="bg-primary/10 text-primary">
-              {categoryLabel(category as SessionCategory)}
-            </Badge>
-            <Badge className="ml-2 bg-surface-muted text-foreground">
-              {STATUS_LABELS[status]}
-            </Badge>
-            <h3 className="mt-3 text-lg font-semibold text-foreground">
+        <section className="lg:sticky lg:top-6 lg:self-start">
+          <h2 className="section-label mb-4">Live preview</h2>
+          <Card variant="elevated" className="border-primary/10">
+            <div className="flex flex-wrap gap-2">
+              <Badge className="bg-primary/10 text-primary ring-1 ring-primary/10">
+                {categoryLabel(category as SessionCategory)}
+              </Badge>
+              <Badge className="bg-surface-muted text-foreground ring-1 ring-border">
+                {STATUS_LABELS[status]}
+              </Badge>
+            </div>
+            <h3 className="mt-4 text-lg font-semibold text-foreground">
               {title || "Untitled"}
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">
               {summary || "No summary provided."}
             </p>
           </Card>
+          <p className="mt-3 text-xs text-muted">
+            Preview reflects attendee-facing session card styling.
+          </p>
         </section>
       </div>
     </div>

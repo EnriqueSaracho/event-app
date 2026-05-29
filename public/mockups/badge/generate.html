@@ -7,59 +7,68 @@
     <link rel="stylesheet" href="../mockups.css" />
   </head>
   <body>
-    <div class="container">
+    <nav class="mock-nav" aria-label="Demo navigation">
+      <div class="mock-nav-inner">
+        <span class="mock-nav-brand">ConcreteBC Events</span>
+        <span class="mock-nav-tag">Badge demo</span>
+      </div>
+    </nav>
+
+    <div class="container-wide">
       <header class="mock-header">
         <span class="mock-logo">ConcreteBC</span>
         <h1>Generate your badge</h1>
         <p class="subtitle">Download or print your conference badge</p>
       </header>
 
-      <div class="card">
-        <h2>Badge details</h2>
-        <div class="meta-row">
-          <div class="meta-item">
-            <span class="meta-label">Name</span>
-            Demo Attendee
+      <div class="badge-layout">
+        <div class="badge-preview">
+          <p class="badge-event">ConcreteBC 2027 Member Conference</p>
+          <p class="badge-name">Demo Attendee</p>
+          <p class="badge-org">Sample Org Ltd.</p>
+          <span class="badge-role">Member</span>
+          <div class="qr-placeholder" aria-label="QR code placeholder"></div>
+        </div>
+
+        <div class="badge-side">
+          <div class="card">
+            <h2>Badge details</h2>
+            <div class="meta-row">
+              <div class="meta-item">
+                <span class="meta-label">Name</span>
+                Demo Attendee
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Organization</span>
+                Sample Org Ltd.
+              </div>
+              <div class="meta-item">
+                <span class="meta-label">Role</span>
+                Member
+              </div>
+            </div>
           </div>
-          <div class="meta-item">
-            <span class="meta-label">Organization</span>
-            Sample Org Ltd.
+
+          <div class="card card-muted">
+            <p style="margin: 0 0 0.75rem; font-size: 0.9rem">
+              Choose a format to download. Buttons are non-functional in this
+              demo mockup.
+            </p>
+            <div class="btn-group" style="margin-top: 0">
+              <button type="button" class="btn" disabled>Download PDF</button>
+              <button type="button" class="btn btn-secondary" disabled>
+                Download PNG
+              </button>
+              <button type="button" class="btn btn-secondary" disabled>
+                Print badge
+              </button>
+            </div>
           </div>
-          <div class="meta-item">
-            <span class="meta-label">Role</span>
-            Member
+
+          <div class="btn-group">
+            <a href="index.html" class="btn btn-secondary">Back to preview</a>
           </div>
         </div>
-      </div>
-
-      <div class="badge-preview" style="margin-bottom: 1.5rem">
-        <p class="badge-event">ConcreteBC 2027 Member Conference</p>
-        <p class="badge-name">Demo Attendee</p>
-        <p class="badge-org">Sample Org Ltd.</p>
-        <span class="badge-role">Member</span>
-        <div class="qr-placeholder" aria-label="QR code placeholder"></div>
-      </div>
-
-      <div class="card card-muted">
-        <p style="margin: 0 0 0.75rem; font-size: 0.9rem">
-          Choose a format to download. Buttons are non-functional in this demo
-          mockup.
-        </p>
-        <div class="btn-group" style="margin-top: 0">
-          <button type="button" class="btn" disabled>
-            Download PDF
-          </button>
-          <button type="button" class="btn btn-secondary" disabled>
-            Download PNG
-          </button>
-          <button type="button" class="btn btn-secondary" disabled>
-            Print badge
-          </button>
-        </div>
-      </div>
-
-      <div class="btn-group">
-        <a href="index.html" class="btn btn-secondary">Back to preview</a>
       </div>
 
       <footer class="mock-footer">

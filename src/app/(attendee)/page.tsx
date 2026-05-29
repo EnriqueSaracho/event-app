@@ -49,82 +49,104 @@ export default async function HomePage() {
   ];
 
   return (
-    <div className="space-y-6">
-      <header>
-        <p className="text-sm font-medium text-accent">Member conference</p>
-        <h1 className="mt-1 text-2xl font-semibold tracking-tight text-primary">
-          {event.name}
-        </h1>
-        <p className="mt-2 text-sm text-muted">
-          {formatEventDateRange(event.starts_on, event.ends_on)} ·{" "}
-          {event.venue_name}
-        </p>
-        {event.summary ? (
-          <p className="mt-3 text-sm leading-relaxed text-foreground/80">
-            {event.summary}
+    <div className="attendee-main-grid">
+      <div className="space-y-8">
+        <header className="lg:hidden">
+          <p className="text-xs font-semibold uppercase tracking-wider text-accent">
+            Member conference
           </p>
-        ) : null}
-      </header>
+          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-foreground">
+            {event.name}
+          </h1>
+          <p className="mt-2 text-sm text-muted">
+            {formatEventDateRange(event.starts_on, event.ends_on)} ·{" "}
+            {event.venue_name}
+          </p>
+          {event.summary ? (
+            <p className="mt-3 text-sm leading-relaxed text-foreground/80">
+              {event.summary}
+            </p>
+          ) : null}
+        </header>
 
-      {nextUp ? (
-        <section aria-labelledby="next-up-heading">
-          <h2
-            id="next-up-heading"
-            className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted"
-          >
-            Next up
-          </h2>
-          <Link href={`/sessions/${nextUp.id}`}>
-            <Card className="border-primary/20 bg-surface-muted transition-shadow hover:shadow-md">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="text-xs font-medium text-muted">
-                    {formatSessionTime(nextUp.starts_at, nextUp.ends_at)}
-                  </p>
-                  <h3 className="mt-1 font-medium text-foreground">
-                    {nextUp.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-muted">{nextUp.location}</p>
+        {nextUp ? (
+          <section aria-labelledby="next-up-heading">
+            <h2 id="next-up-heading" className="section-label mb-3">
+              Next up
+            </h2>
+            <Link href={`/sessions/${nextUp.id}`}>
+              <Card variant="elevated" className="transition-colors hover:border-accent/30">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-xs font-semibold text-accent">
+                      {formatSessionTime(nextUp.starts_at, nextUp.ends_at)}
+                    </p>
+                    <h3 className="mt-2 text-lg font-semibold text-foreground">
+                      {nextUp.title}
+                    </h3>
+                    <p className="mt-1 text-sm text-muted">{nextUp.location}</p>
+                  </div>
+                  <CategoryBadge category={nextUp.category} />
                 </div>
-                <CategoryBadge category={nextUp.category} />
-              </div>
-            </Card>
-          </Link>
-        </section>
-      ) : null}
-
-      <section aria-labelledby="quick-links-heading">
-        <h2
-          id="quick-links-heading"
-          className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted"
-        >
-          Quick links
-        </h2>
-        <div className="grid grid-cols-2 gap-3">
-          {quickLinks.map((link) => (
-            <Link key={link.href} href={link.href}>
-              <Card className="h-full transition-shadow hover:shadow-md">
-                <p className="font-medium text-foreground">{link.label}</p>
-                <p className="mt-1 text-xs text-muted">{link.description}</p>
               </Card>
             </Link>
-          ))}
-          <Card className="opacity-60">
-            <p className="font-medium text-foreground">Resources</p>
-            <p className="mt-1 text-xs text-muted">Coming soon</p>
-          </Card>
-        </div>
-      </section>
+          </section>
+        ) : null}
 
-      <section aria-labelledby="saved-heading">
-        <h2
-          id="saved-heading"
-          className="mb-3 text-sm font-semibold uppercase tracking-wide text-muted"
-        >
-          Your schedule
-        </h2>
+        <section aria-labelledby="quick-links-heading">
+          <h2 id="quick-links-heading" className="section-label mb-3">
+            Quick links
+          </h2>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {quickLinks.map((link) => (
+              <Link key={link.href} href={link.href}>
+                <Card className="h-full transition-colors hover:border-primary/30 hover:bg-surface-muted/30">
+                  <p className="font-medium text-foreground">{link.label}</p>
+                  <p className="mt-1 text-xs text-muted">{link.description}</p>
+                </Card>
+              </Link>
+            ))}
+            <Card variant="muted" className="opacity-70">
+              <p className="font-medium text-foreground">Resources</p>
+              <p className="mt-1 text-xs text-muted">Coming soon</p>
+            </Card>
+          </div>
+        </section>
+
+        <section className="lg:hidden" aria-labelledby="saved-heading-mobile">
+          <h2 id="saved-heading-mobile" className="section-label mb-3">
+            Your schedule
+          </h2>
+          <SavedCountWidget />
+        </section>
+      </div>
+
+      <aside className="hidden space-y-4 lg:block">
+        <Card variant="muted">
+          <p className="section-label">About this event</p>
+          <p className="mt-3 text-sm leading-relaxed text-foreground/80">
+            {event.summary ??
+              "Welcome to the ConcreteBC member conference experience."}
+          </p>
+          <dl className="mt-4 space-y-2 text-sm">
+            <div>
+              <dt className="text-xs font-medium uppercase tracking-wide text-muted">
+                Dates
+              </dt>
+              <dd className="text-foreground">
+                {formatEventDateRange(event.starts_on, event.ends_on)}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-xs font-medium uppercase tracking-wide text-muted">
+                Venue
+              </dt>
+              <dd className="text-foreground">{event.venue_name}</dd>
+            </div>
+          </dl>
+        </Card>
         <SavedCountWidget />
-      </section>
+      </aside>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getSponsorBySlug } from "@/lib/supabase/queries/sponsors";
 import { safeQuery } from "@/lib/safe-query";
 import { Badge } from "@/components/ui/Badge";
+import { Card } from "@/components/ui/Card";
 import { BookmarkSponsorButton } from "@/components/attendee/BookmarkSponsorButton";
 
 type SponsorProfilePageProps = {
@@ -22,21 +23,26 @@ export default async function SponsorProfilePage({
   const sponsor = result.data;
 
   return (
-    <article className="space-y-6">
-      <div>
+    <article>
+      <div className="mb-6">
         <Link
           href="/sponsors"
-          className="text-sm font-medium text-accent hover:underline"
+          className="text-sm font-medium text-primary hover:underline"
         >
           ← Back to sponsors
         </Link>
       </div>
 
-      <header>
-        <h1 className="text-2xl font-semibold text-primary">{sponsor.name}</h1>
+      <header className="mb-8 rounded-lg border border-border bg-surface-muted/50 px-5 py-6 lg:px-8">
+        <h1 className="text-2xl font-semibold text-foreground lg:text-3xl">
+          {sponsor.name}
+        </h1>
         <div className="mt-3 flex flex-wrap gap-2">
           {sponsor.categories.map((cat) => (
-            <Badge key={cat} className="bg-primary/10 text-primary">
+            <Badge
+              key={cat}
+              className="bg-primary/10 text-primary ring-1 ring-primary/10"
+            >
               {cat}
             </Badge>
           ))}
@@ -48,14 +54,33 @@ export default async function SponsorProfilePage({
         ) : null}
       </header>
 
-      <BookmarkSponsorButton sponsorId={sponsor.id} />
+      <div className="lg:grid lg:grid-cols-[1fr_280px] lg:items-start lg:gap-8">
+        <section>
+          <h2 className="section-label mb-2">Overview</h2>
+          <p className="leading-relaxed text-foreground/90">
+            {sponsor.overview}
+          </p>
+        </section>
 
-      <section>
-        <h2 className="mb-2 text-sm font-semibold uppercase tracking-wide text-muted">
-          Overview
-        </h2>
-        <p className="leading-relaxed text-foreground/90">{sponsor.overview}</p>
-      </section>
+        <aside className="mt-6 space-y-4 lg:sticky lg:top-6 lg:mt-0">
+          <div className="lg:hidden">
+            <BookmarkSponsorButton sponsorId={sponsor.id} />
+          </div>
+          <div className="hidden lg:block">
+            <BookmarkSponsorButton sponsorId={sponsor.id} layout="rail" />
+          </div>
+          {sponsor.booth_location ? (
+            <Card variant="muted">
+              <p className="text-xs font-medium uppercase tracking-wide text-muted">
+                Location
+              </p>
+              <p className="mt-1 font-medium text-foreground">
+                Booth {sponsor.booth_location}
+              </p>
+            </Card>
+          ) : null}
+        </aside>
+      </div>
     </article>
   );
 }

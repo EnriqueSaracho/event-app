@@ -40,7 +40,7 @@ export function SponsorsView({ sponsors }: SponsorsViewProps) {
         placeholder="Search sponsors…"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full rounded-lg border border-border bg-surface px-3 py-2.5 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary min-h-[44px]"
+        className="input-field"
         aria-label="Search sponsors"
       />
 
@@ -68,24 +68,24 @@ export function SponsorsView({ sponsors }: SponsorsViewProps) {
           description="Try adjusting your search or filter."
         />
       ) : (
-        <ul className="space-y-3">
+        <ul className="grid grid-cols-1 gap-3 lg:grid-cols-2 xl:grid-cols-3">
           {filtered.map((sponsor) => (
             <li key={sponsor.id}>
-              <Link href={`/sponsors/${sponsor.slug}`}>
-                <Card className="transition-shadow hover:shadow-md">
+              <Link href={`/sponsors/${sponsor.slug}`} className="block h-full">
+                <Card className="flex h-full flex-col transition-colors hover:border-primary/30 hover:bg-surface-muted/30">
                   <h3 className="font-medium text-foreground">{sponsor.name}</h3>
                   <div className="mt-2 flex flex-wrap gap-1.5">
                     {sponsor.categories.map((cat) => (
                       <Badge
                         key={cat}
-                        className="bg-surface-muted text-foreground"
+                        className="bg-primary/10 text-primary ring-1 ring-primary/10"
                       >
                         {cat}
                       </Badge>
                     ))}
                   </div>
                   {sponsor.booth_location ? (
-                    <p className="mt-2 text-sm text-muted">
+                    <p className="mt-auto pt-3 text-sm text-muted">
                       Booth {sponsor.booth_location}
                     </p>
                   ) : null}

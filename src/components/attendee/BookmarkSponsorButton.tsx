@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
 import { useDemoVisitor } from "@/lib/demo-visitor/DemoVisitorProvider";
 import {
   bookmarkSponsor,
@@ -11,10 +12,12 @@ import {
 
 type BookmarkSponsorButtonProps = {
   sponsorId: string;
+  layout?: "inline" | "rail";
 };
 
 export function BookmarkSponsorButton({
   sponsorId,
+  layout = "inline",
 }: BookmarkSponsorButtonProps) {
   const { visitorId, isReady } = useDemoVisitor();
   const [bookmarked, setBookmarked] = useState(false);
@@ -61,14 +64,29 @@ export function BookmarkSponsorButton({
     }
   }
 
-  return (
+  const button = (
     <Button
-      variant={bookmarked ? "secondary" : "primary"}
+      variant={bookmarked ? "secondary" : "accent"}
       onClick={toggleBookmark}
       disabled={!isReady || !visitorId || loading || !initialized}
       aria-pressed={bookmarked}
+      className={layout === "rail" ? "w-full" : undefined}
     >
-      {loading ? "Saving…" : bookmarked ? "Bookmarked" : "Bookmark"}
+      {loading ? "Saving…" : bookmarked ? "Bookmarked" : "Bookmark sponsor"}
     </Button>
   );
+
+  if (layout === "rail") {
+    return (
+      <Card className="space-y-3">
+        <p className="text-sm font-semibold text-foreground">Quick actions</p>
+        <p className="text-sm text-muted">
+          Save this sponsor to revisit their profile during the event.
+        </p>
+        {button}
+      </Card>
+    );
+  }
+
+  return button;
 }

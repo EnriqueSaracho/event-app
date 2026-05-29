@@ -130,16 +130,16 @@ export function SavedSessionsView() {
 
       {overlapPairs.length > 0 ? (
         <div
-          className="mb-4 rounded-xl border border-warning-border bg-warning-bg px-4 py-3"
+          className="mb-6 rounded-lg border border-warning-border bg-warning-bg px-4 py-4 lg:px-6"
           role="alert"
         >
-          <p className="font-medium text-warning">Schedule conflict</p>
+          <p className="font-semibold text-warning">Schedule conflict</p>
           <p className="mt-1 text-sm text-foreground/80">
             Some saved sessions overlap in time:
           </p>
-          <ul className="mt-2 space-y-1 text-sm">
+          <ul className="mt-3 space-y-1 text-sm lg:columns-2 lg:gap-8">
             {overlapPairs.map(([a, b]) => (
-              <li key={`${a}-${b}`}>
+              <li key={`${a}-${b}`} className="break-inside-avoid">
                 {sessionTitleById.get(a) ?? "Session"} and{" "}
                 {sessionTitleById.get(b) ?? "Session"}
               </li>
@@ -154,7 +154,7 @@ export function SavedSessionsView() {
           description="Browse the agenda and save sessions you want to attend."
           action={
             <Link href="/agenda">
-              <Button>Browse agenda</Button>
+              <Button variant="accent">Browse agenda</Button>
             </Link>
           }
         />
@@ -168,32 +168,34 @@ export function SavedSessionsView() {
             return (
               <li key={item.id}>
                 <Card
-                  className={
-                    hasOverlap ? "border-warning-border bg-warning-bg/30" : ""
-                  }
+                  className={`lg:flex lg:items-center lg:gap-6 lg:py-3 ${
+                    hasOverlap ? "border-warning-border bg-warning-bg/40" : ""
+                  }`}
                 >
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="min-w-0 flex-1">
-                      <Link href={`/sessions/${session.id}`}>
-                        <p className="text-xs font-medium text-muted">
-                          {formatSessionTime(
-                            session.starts_at,
-                            session.ends_at,
-                          )}
-                        </p>
-                        <h3 className="mt-1 font-medium text-foreground hover:text-primary">
-                          {session.title}
-                        </h3>
-                      </Link>
-                      <div className="mt-2">
-                        <CategoryBadge category={session.category} />
-                      </div>
+                  <div className="lg:w-40 lg:shrink-0">
+                    <p className="text-xs font-semibold text-accent lg:text-sm">
+                      {formatSessionTime(
+                        session.starts_at,
+                        session.ends_at,
+                      )}
+                    </p>
+                  </div>
+                  <div className="mt-2 min-w-0 flex-1 lg:mt-0">
+                    <Link href={`/sessions/${session.id}`}>
+                      <h3 className="font-medium text-foreground hover:text-primary">
+                        {session.title}
+                      </h3>
+                    </Link>
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      <CategoryBadge category={session.category} />
                       {hasOverlap ? (
-                        <p className="mt-2 text-xs font-medium text-warning">
-                          Overlaps with another saved session
-                        </p>
+                        <span className="text-xs font-medium text-warning">
+                          Overlaps with another session
+                        </span>
                       ) : null}
                     </div>
+                  </div>
+                  <div className="mt-3 lg:mt-0 lg:shrink-0">
                     <Button
                       variant="ghost"
                       size="sm"

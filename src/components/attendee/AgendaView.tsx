@@ -51,43 +51,75 @@ export function AgendaView({ sessions }: AgendaViewProps) {
     router.replace(`/agenda?${params.toString()}`, { scroll: false });
   }
 
-  return (
-    <div className="space-y-4">
-      <div className="flex gap-2 overflow-x-auto pb-1">
-        {days.map((day) => (
-          <FilterChip
-            key={day}
-            label={formatDayLabel(day)}
-            active={selectedDay === day}
-            onClick={() => updateParams({ day })}
-          />
-        ))}
-      </div>
-
-      <div className="flex flex-wrap gap-2">
+  const categoryFilters = (
+    <>
+      <FilterChip
+        label="All categories"
+        active={selectedCategory === null}
+        onClick={() => updateParams({ category: null })}
+        vertical
+      />
+      {SESSION_CATEGORIES.map((category) => (
         <FilterChip
-          label="All categories"
-          active={selectedCategory === null}
-          onClick={() => updateParams({ category: null })}
+          key={category}
+          label={categoryLabel(category)}
+          active={selectedCategory === category}
+          onClick={() => updateParams({ category })}
+          vertical
         />
-        {SESSION_CATEGORIES.map((category) => (
-          <FilterChip
-            key={category}
-            label={categoryLabel(category)}
-            active={selectedCategory === category}
-            onClick={() => updateParams({ category })}
-          />
-        ))}
-      </div>
+      ))}
+    </>
+  );
 
-      {filtered.length === 0 ? (
-        <EmptyState
-          title="No sessions match your filters"
-          description="Try a different day or category."
-        />
-      ) : (
-        <SessionList sessions={filtered} />
-      )}
+  return (
+    <div className="agenda-layout">
+      <aside className="hidden lg:block">
+        <div className="sticky top-6 space-y-2">
+          <p className="section-label mb-3">Filter by category</p>
+          {categoryFilters}
+        </div>
+      </aside>
+
+      <div className="min-w-0 space-y-4">
+        <div>
+          <p className="section-label mb-2 lg:sr-only">Conference days</p>
+          <div className="flex gap-2 overflow-x-auto pb-1">
+            {days.map((day) => (
+              <FilterChip
+                key={day}
+                label={formatDayLabel(day)}
+                active={selectedDay === day}
+                onClick={() => updateParams({ day })}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-wrap gap-2 lg:hidden">
+          <FilterChip
+            label="All categories"
+            active={selectedCategory === null}
+            onClick={() => updateParams({ category: null })}
+          />
+          {SESSION_CATEGORIES.map((category) => (
+            <FilterChip
+              key={category}
+              label={categoryLabel(category)}
+              active={selectedCategory === category}
+              onClick={() => updateParams({ category })}
+            />
+          ))}
+        </div>
+
+        {filtered.length === 0 ? (
+          <EmptyState
+            title="No sessions match your filters"
+            description="Try a different day or category."
+          />
+        ) : (
+          <SessionList sessions={filtered} />
+        )}
+      </div>
     </div>
   );
 }

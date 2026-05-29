@@ -16,25 +16,31 @@ export function SessionList({ sessions }: SessionListProps) {
   }
 
   return (
-    <ul className="space-y-3">
+    <ul className="space-y-3 lg:space-y-2">
       {sessions.map((session) => (
         <li key={session.id}>
           <Link href={`/sessions/${session.id}`}>
-            <Card className="transition-shadow hover:shadow-md">
-              <div className="flex items-start justify-between gap-3">
-                <div className="min-w-0 flex-1">
-                  <p className="text-xs font-medium text-muted">
-                    {formatSessionTime(session.starts_at, session.ends_at)}
-                  </p>
-                  <h3 className="mt-1 font-medium text-foreground">
-                    {session.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-muted line-clamp-2">
-                    {session.summary}
-                  </p>
-                </div>
-                <CategoryBadge category={session.category} />
+            <Card className="transition-colors hover:border-primary/30 hover:bg-surface-muted/30 lg:flex lg:items-center lg:gap-6 lg:py-3">
+              <div className="lg:w-36 lg:shrink-0">
+                <p className="text-xs font-semibold text-accent lg:text-sm">
+                  {formatSessionTime(session.starts_at, session.ends_at)}
+                </p>
               </div>
+              <div className="mt-2 min-w-0 flex-1 lg:mt-0">
+                <div className="flex items-start justify-between gap-3">
+                  <h3 className="font-medium text-foreground">{session.title}</h3>
+                  <CategoryBadge category={session.category} />
+                </div>
+                <p className="mt-1 text-sm text-muted line-clamp-2 lg:line-clamp-1">
+                  {session.summary}
+                </p>
+                <p className="mt-1 text-xs text-muted lg:hidden">
+                  {session.location}
+                </p>
+              </div>
+              <p className="mt-2 hidden text-sm text-muted lg:block lg:w-32 lg:shrink-0">
+                {session.location}
+              </p>
             </Card>
           </Link>
         </li>

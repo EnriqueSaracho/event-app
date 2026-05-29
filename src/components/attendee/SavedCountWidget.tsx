@@ -29,10 +29,13 @@ export function SavedCountWidget() {
 
   return (
     <Link href="/saved">
-      <Card className="transition-shadow hover:shadow-md">
-        <p className="text-sm font-medium text-muted">Saved sessions</p>
-        <p className="mt-1 text-2xl font-semibold text-primary">
+      <Card className="transition-colors hover:border-primary/30 hover:bg-surface-muted/30">
+        <p className="section-label">Your schedule</p>
+        <p className="mt-2 text-3xl font-semibold text-primary">
           {count === null ? "—" : count}
+        </p>
+        <p className="mt-1 text-sm text-muted">
+          saved session{count === 1 ? "" : "s"}
         </p>
       </Card>
     </Link>
