@@ -10,7 +10,22 @@ Build a ConcreteBC 2027 member conference / in-event attendee app prototype to d
 
 ## Product framing
 
-ConcreteBC member conference / **in-event experience** — not a generic registration signup product. Registration flows are **out of scope** for prototype v1 unless the team explicitly adds them.
+ConcreteBC member conference / **in-event experience** — not a generic registration signup product. Registration flows are **out of scope for in-app prototype v1** unless the team explicitly adds them.
+
+## Context vs hackathon app
+
+Same general app shape as the team hackathon build (prior internal demo). Main differences for ConcreteBC:
+
+- **More pages and a richer, more detailed conference agenda** — hackathon = main event + some sessions; conference = fuller multi-session agenda across days
+- Checkpoint 1A screen set reflects this broader in-event scope
+
+## Venue note
+
+Client said the event is **all held on the main stage**. For prototype v1, session location can be simplified (single venue/stage; no multi-room navigation logic required).
+
+## Pre-meeting deliverables (optional, not v1 app scope)
+
+Static HTML mockups for **registration flow** and **badge generation** may be needed for client meetings — fake data only, visual preview only. These are separate from the Checkpoint 1A Next.js app unless the team explicitly promotes them into the build.
 
 ## Navigation
 
@@ -70,7 +85,7 @@ Attendee app is **mobile-first** with bottom navigation: **Home → Agenda → S
 
 **Mocked:** UI flows, fake data cards, screen-to-screen navigation
 
-**Deferred (Track B / later):** auth/authz, real admin CRUD/publishing, speaker/attachment depth, sponsor outreach/contact, consent/retention, analytics, operational controls
+**Deferred (Track B / later):** auth/authz, real admin CRUD/publishing, speaker/attachment depth, sponsor outreach/contact, consent/retention, analytics, operational controls, push notifications, badge generation, seat registration
 
 **Not claiming:** production-ready, full Whova replacement, all-in-one event platform
 
@@ -78,7 +93,8 @@ Attendee app is **mobile-first** with bottom navigation: **Home → Agenda → S
 
 ## Out of scope for demo
 
-- Event registration / signup flows (not in Checkpoint 1A)
+- In-app registration, badge generation, push notifications, or seat registration (client wants these long-term — see vision.md; PM deferred from prototype v1)
+- Event registration / signup flows in the Next.js app (not in Checkpoint 1A)
 - Full production compliance / vendor sign-off (logs, backups, support access, subprocessors)
 - Real attendee/member personal data in Supabase
 - Real admin CRUD, publishing, auth, or role enforcement (admin is mock UI for v1)

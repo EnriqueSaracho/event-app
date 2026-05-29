@@ -21,6 +21,27 @@ Events platform for Canadian nonprofits supporting registrations, event lifecycl
 - Attendance tracking
 - Communications (email/notifications)
 
+## Client-requested capabilities (long-term)
+
+PM intentionally excluded these from prototype v1 to keep the build focused; client has expressed interest:
+
+- **Push notifications**
+- **Badge generation**
+- **Seat registration** — register seats now, add attendee names later
+
+## Reference / competitive context
+
+Named competitors for inspiration and positioning reference only (not build targets):
+
+- **Whova**, **PheedLoop**, **EventMobi**
+
+PM maintains separate docs on pricing, licensing, vendor comparison, proposal strategy, and client positioning — detailed comparison lives outside this repo unless added later.
+
+**Positioning guardrails:**
+
+- Not building a full Whova clone or all-in-one event platform replacement
+- Differentiate on Canadian nonprofit needs, data residency path, and tailored workflow — not feature parity with incumbents
+
 ## Compliance direction
 
 - Personal data may include attendee info, registration details, contact info, organizational data
