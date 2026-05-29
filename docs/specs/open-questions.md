@@ -2,17 +2,10 @@
 
 Update this file as decisions are made. Move resolved items into demo.md or vision.md.
 
-## Demo blocking (answer before feature planning)
-
-- [ ] Demo date or deadline?
-- [ ] Are registration/badge static HTML mockups required for the next client meeting?
-- [ ] Saved sessions: keep client-local for v1 or persist in Supabase?
-- [ ] Admin prototype: mock UI only (default) vs minimal real CRUD in Supabase?
-- [ ] Branding source: official ConcreteBC brand guidelines (Checkpoint 1A palette was inferred, not official)
-
 ## Roadmap (defer until after prototype v1)
 
-- [ ] When should push notifications, badge generation, and seat registration enter the roadmap?
+- [ ] When should push notifications and seat registration enter the roadmap?
+- [ ] When should functional registration and badge generation move from static HTML mockups into the Next.js app?
 
 ## Infrastructure (can defer for demo)
 
@@ -28,9 +21,15 @@ Update this file as decisions are made. Move resolved items into demo.md or visi
 ## Resolved
 
 - **Mock/seed vs real backend** — Real Supabase backend with fake/test data only (no real PII)
-- **Demo backend/hosting** — Supabase Canada Central (`ca-central-1`) for prototype
+- **Demo backend/hosting** — Supabase Canada Central (`ca-central-1`) for prototype; Supabase is required and fundamental for the Next.js app
 - **Supabase for production** — Still open; vendor confirmation required before real attendee/member data
-- **Must-have demo screens/features** — Checkpoint 1A set: 7 attendee screens + 2 admin mock screens (see demo.md)
-- **Auth for demo** — Default: no auth for prototype v1 (attendee and admin mock); confirm with team
+- **Must-have demo screens/features** — 7 attendee screens + 2 admin mock screens in Next.js app; static HTML mockups for registration and badge generation (see demo.md)
+- **Auth for demo** — Default: no auth for prototype v1 (attendee and admin mock)
 - **Conference vs hackathon** — Richer agenda and more pages than hackathon app; hackathon was prior internal demo only
 - **Venue model** — Single main stage simplifies location/room logic for prototype v1
+- **Saved sessions** — Persist in Supabase for the demo (not client-local)
+- **Registration/badge deliverable** — Static HTML mockups required for client meetings; functional Next.js integration deferred unless promoted
+- **Admin prototype** — Mock UI only for v1 (no real CRUD in Supabase)
+- **Branding/design** — Original team design; do not use Checkpoint 1A palette or design. May take inspiration from competition references in vision.md
+- **Responsive layout** — Both attendee and admin UIs must be responsive (mobile and desktop)
+- **Demo date/presentation format** — Not a spec blocker; team is building now
