@@ -1,5 +1,25 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# Concrete BC Events App
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+Events app for Canadian nonprofits. **Current priority: client demo MVP.**
+
+## Before planning or implementing
+
+1. Read [docs/specs/demo.md](docs/specs/demo.md) — scope boundary
+2. Skim [docs/specs/vision.md](docs/specs/vision.md) — long-term reference only
+3. Check [docs/specs/open-questions.md](docs/specs/open-questions.md) for unresolved decisions
+
+## Scope rule
+
+- Default to **demo scope**
+- Long-term vision informs direction but must not expand current work
+- If demo and vision conflict, demo wins unless the user explicitly overrides
+
+## Stack
+
+- Next.js (App Router), TypeScript, Tailwind CSS
+- Source directory: `src/`
+- Import alias: `@/*`
+
+## Requirements source of truth
+
+All product requirements live in `docs/specs/`. Update specs when decisions are made; do not rely on chat history alone.
