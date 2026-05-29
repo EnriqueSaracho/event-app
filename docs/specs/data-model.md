@@ -234,33 +234,49 @@ delete from public.sponsor_bookmarks;
 delete from public.demo_visitors;
 ```
 
-## Next.js API integration notes (no code yet)
+## Next.js API integration
 
-### Reads (publishable key, server or client component)
+Implementation lives under `src/lib/supabase/` (clients + read queries) and `src/app/api/` (service-role writes).
 
-```typescript
-// Example patterns — implement in src/lib/supabase/
-supabase.from('events').select('*').eq('slug', 'concretebc-2027').single()
-supabase.from('sessions').select('*').eq('event_id', eventId).order('conference_day').order('starts_at')
-supabase.from('sponsors').select('*').order('sort_order')
-supabase.from('members').select('*').eq('role', role).order('sort_order')
-```
+### Client helpers
 
-### Writes (service role, Route Handlers only)
+| Module | Key | Usage |
+|--------|-----|-------|
+| `src/lib/supabase/client.ts` | publishable | Browser client components |
+| `src/lib/supabase/server.ts` | publishable | RSC + read queries |
+| `src/lib/supabase/admin.ts` | service role | Route Handlers only (`import 'server-only'`) |
 
-```typescript
-// POST save session
-admin.from('saved_sessions').upsert({ demo_visitor_id, session_id })
+Types are hand-written in `src/lib/supabase/types.ts` from the migration schema.
 
-// DELETE unsave
-admin.from('saved_sessions').delete().match({ demo_visitor_id, session_id })
+### Read queries (publishable key)
 
-// Sponsor bookmark toggle — same pattern on sponsor_bookmarks
-```
+| Module | Functions |
+|--------|-----------|
+| `queries/agenda.ts` | `getEventBySlug`, `getSessionsForEvent`, `getSessionById` |
+| `queries/sponsors.ts` | `listSponsors`, `getSponsorBySlug` |
+| `queries/members.ts` | `listMembers` |
 
-### Overlap check (API or client after fetch)
+Constants: `DEMO_EVENT_SLUG`, `DEMO_EVENT_ID`, `SEEDED_DEMO_VISITOR_ID` in `src/lib/supabase/constants.ts`.
 
-Given saved session rows joined to `sessions`, flag pairs where intervals overlap using the rule above.
+Queries throw `SupabaseQueryError` on failure.
+
+### Write API routes (service role)
+
+| Method | Route | Request | Response |
+|--------|-------|---------|----------|
+| POST | `/api/demo-visitor` | optional `{ id?, label? }` | `{ id }` (201 new, 200 existing) |
+| GET | `/api/saved-sessions?demo_visitor_id=` | — | `{ saved_sessions: SavedSessionWithSession[] }` |
+| POST | `/api/saved-sessions` | `{ demo_visitor_id, session_id }` | `{ saved: true }` (201) |
+| DELETE | `/api/saved-sessions` | `{ demo_visitor_id, session_id }` | 204 (idempotent) |
+| GET | `/api/sponsor-bookmarks?demo_visitor_id=` | — | `{ bookmarks: SponsorBookmarkWithSponsor[] }` |
+| POST | `/api/sponsor-bookmarks` | `{ demo_visitor_id, sponsor_id }` | `{ bookmarked: true }` (201) |
+| DELETE | `/api/sponsor-bookmarks` | `{ demo_visitor_id, sponsor_id }` | 204 (idempotent) |
+
+Validation: UUID format required; 400 for invalid input; 500 with generic message on DB errors.
+
+### Overlap utility
+
+`src/lib/sessions/overlap.ts` — `findOverlappingSessionPairs(sessions)` returns `[idA, idB][]` using `A.starts_at < B.ends_at && A.ends_at > B.starts_at`.
 
 ## Verification (2026-05-29)
 
