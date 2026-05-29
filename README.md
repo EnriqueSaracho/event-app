@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment variables
+
+Copy [`.env.example`](.env.example) to `.env.local` and fill in your Supabase project values from **Project Settings → API** in the dashboard. Do not commit `.env.local`.
+
 ## Getting Started
 
 First, run the development server:
