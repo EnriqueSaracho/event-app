@@ -25,12 +25,13 @@ Events platform for Canadian nonprofits supporting registrations, event lifecycl
 - Personal data may include attendee info, registration details, contact info, organizational data
 - Production goal: store client personal data in Canada where practicable
 - Relevant context: PIPEDA, provincial laws (BC, Alberta, Quebec), funder/board expectations
-- Must account for: backups, logs, support access, subprocessors, analytics — **research needed before production**
-- Demo does not need to satisfy these requirements
+- Must account for: backups, logs, support access, subprocessors, analytics — **vendor confirmation required before production**
+- **Prototype:** Supabase `ca-central-1` is approved for build/test with fake data and guardrails (see demo.md); not approved for real attendee/member data until vendor confirms residency details
 
-## Stack (under consideration)
+## Stack
 
-- Backend/database: Supabase vs Canadian-hosted Postgres + custom backend — **not decided**
+- **Prototype (current):** Supabase Canada Central (`ca-central-1`) + Next.js API routes
+- **Production (TBD):** May migrate to custom Canadian-hosted Postgres + backend if Supabase does not meet production compliance
 - Auth, file storage, email: TBD with residency review
 
 ## Status

@@ -6,21 +6,22 @@ Update this file as decisions are made. Move resolved items into demo.md or visi
 
 - [ ] What features/screens are must-have for the client demo?
 - [ ] Demo date or deadline?
-- [ ] Mock/seed data only, or real backend for demo?
 - [ ] Is auth required for demo (admin login, attendee accounts)?
 - [ ] Branding source: Figma, existing client site, or greenfield?
 
 ## Infrastructure (can defer for demo)
 
-- [ ] Demo hosting: Vercel, Supabase, other?
+- [ ] Frontend hosting: Vercel or other?
 - [ ] Does the client need Canada-residency messaging even for the demo narrative?
 
 ## Production (defer until after demo)
 
-- [ ] Supabase vs Canadian-hosted architecture?
-- [ ] Vendor/compliance research timeline?
+- [ ] Supabase vs custom Canadian-hosted Postgres for production?
+- [ ] Vendor/compliance research timeline (logs, backups, support access, subprocessors)?
 - [ ] Which provincial privacy requirements apply to target clients?
 
 ## Resolved
 
-_(none yet)_
+- **Mock/seed vs real backend** — Real Supabase backend with fake/test data only (no real PII)
+- **Demo backend/hosting** — Supabase Canada Central (`ca-central-1`) for prototype
+- **Supabase for production** — Still open; vendor confirmation required before real attendee/member data

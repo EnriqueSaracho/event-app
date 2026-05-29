@@ -17,8 +17,11 @@ Events app for Canadian nonprofits. **Current priority: client demo MVP.**
 ## Stack
 
 - Next.js (App Router), TypeScript, Tailwind CSS
+- Supabase Canada Central (`ca-central-1`, prototype only) + Next.js API routes
 - Source directory: `src/`
 - Import alias: `@/*`
+
+Prototype guardrails (fake data, no PII logging, etc.) are in [docs/specs/demo.md](docs/specs/demo.md).
 
 ## Requirements source of truth
 
