@@ -5,6 +5,10 @@
       "headers": {
         "Authorization": "Bearer YOUR_GITHUB_PAT"
       }
+    },
+    "supabase": {
+      "type": "http",
+      "url": "https://mcp.supabase.com/mcp?project_ref=YOUR_PROJECT_REF"
     }
   }
 }
