@@ -4,10 +4,10 @@ Update this file as decisions are made. Move resolved items into demo.md or visi
 
 ## Demo blocking (answer before feature planning)
 
-- [ ] What features/screens are must-have for the client demo?
 - [ ] Demo date or deadline?
-- [ ] Is auth required for demo (admin login, attendee accounts)?
-- [ ] Branding source: Figma, existing client site, or greenfield?
+- [ ] Saved sessions: keep client-local for v1 or persist in Supabase?
+- [ ] Admin prototype: mock UI only (default) vs minimal real CRUD in Supabase?
+- [ ] Branding source: official ConcreteBC brand guidelines (Checkpoint 1A palette was inferred, not official)
 
 ## Infrastructure (can defer for demo)
 
@@ -25,3 +25,5 @@ Update this file as decisions are made. Move resolved items into demo.md or visi
 - **Mock/seed vs real backend** — Real Supabase backend with fake/test data only (no real PII)
 - **Demo backend/hosting** — Supabase Canada Central (`ca-central-1`) for prototype
 - **Supabase for production** — Still open; vendor confirmation required before real attendee/member data
+- **Must-have demo screens/features** — Checkpoint 1A set: 7 attendee screens + 2 admin mock screens (see demo.md)
+- **Auth for demo** — Default: no auth for prototype v1 (attendee and admin mock); confirm with team

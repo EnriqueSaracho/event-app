@@ -25,4 +25,4 @@ Prototype guardrails (fake data, no PII logging, etc.) are in [docs/specs/demo.m
 
 ## Requirements source of truth
 
-All product requirements live in `docs/specs/`. Update specs when decisions are made; do not rely on chat history alone.
+All product requirements live in `docs/specs/`. Demo screen inventory (Checkpoint 1A-derived) is in [docs/specs/demo.md](docs/specs/demo.md). Update specs when decisions are made; do not rely on chat history alone.

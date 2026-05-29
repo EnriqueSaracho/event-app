@@ -14,7 +14,8 @@ Events platform for Canadian nonprofits supporting registrations, event lifecycl
 
 ## Long-term capabilities
 
-- CMS-like admin for content and event editing
+- In-event attendee experience: agenda, sponsors/exhibitors, member directory, saved sessions
+- CMS-like admin for content and event editing (prototype admin is lower fidelity — mock/static UI only)
 - Event creation, scheduling, and management
 - Registration and attendee management
 - Attendance tracking
