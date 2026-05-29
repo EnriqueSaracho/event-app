@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration form — ConcreteBC 2027</title>
+    <link rel="stylesheet" href="../mockups.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="mock-header">
+        <span class="mock-logo">ConcreteBC</span>
+        <h1>Register for the conference</h1>
+        <p class="subtitle">Step 1 of 2 — Attendee details</p>
+      </header>
+
+      <div class="steps">
+        <div class="step active"></div>
+        <div class="step"></div>
+      </div>
+
+      <div class="notice">
+        Register your seats now — add attendee names later. Perfect for
+        organizations booking multiple spots.
+      </div>
+
+      <div class="card">
+        <form action="confirmation.html" method="get">
+          <div class="form-group">
+            <label for="name">Attendee name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value="Demo Attendee"
+              readonly
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="org">Organization</label>
+            <input
+              type="text"
+              id="org"
+              name="org"
+              value="Sample Org Ltd."
+              readonly
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email (demo)</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value="demo.attendee@example.test"
+              readonly
+            />
+            <p class="hint">Fake address for demo purposes only.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="ticket">Ticket type</label>
+            <select id="ticket" name="ticket">
+              <option selected>Member — Full conference</option>
+              <option>Member — Single day</option>
+              <option>Guest pass</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="seats">Number of seats</label>
+            <input type="number" id="seats" name="seats" value="2" min="1" />
+            <p class="hint">You can assign names to each seat after checkout.</p>
+          </div>
+
+          <div class="btn-group">
+            <a href="index.html" class="btn btn-secondary">Back</a>
+            <button type="submit" class="btn">Continue to confirmation</button>
+          </div>
+        </form>
+      </div>
+
+      <footer class="mock-footer">
+        Static mockup — fake data only · ConcreteBC Events Demo
+      </footer>
+    </div>
+  </body>
+</html>
