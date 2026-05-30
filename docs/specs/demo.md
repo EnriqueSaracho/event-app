@@ -100,7 +100,7 @@ Admin is a separate mock area with its own navigation. **Both attendee and admin
 - Next.js (App Router), TypeScript, Tailwind CSS
 - Supabase in **Canada Central (`ca-central-1`)** — **prototype-only**; not approved for paid/client production with real personal data yet
 - Sensitive logic in Next.js API routes (not Supabase Edge Functions for personal data)
-- Static HTML mockups for registration/badge (plain HTML/CSS; location TBD during implementation)
+- Static HTML mockups in public/mockups/ — served locally at /mockups via Next.js dev server
 
 ## Prototype guardrails
 
